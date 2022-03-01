@@ -13,15 +13,23 @@
 </head>
 
 <body>
-    <div class="container mt-5 ">
-        <h1 class="text-center text-primary text-decoration-underline fs-1 mb-5">Phone Fair</h1>
-        <div style="background-color: rgb(204, 208, 211);" class=" border border-primary p-5">
+    <div class="container mt-5 ps-5 ">
+        <h1 style="color: indigo;" class="text-center text-decoration-underline  fs-1 mb-5">Phone Fair</h1>
+        <div style="border: 2px solid indigo; background-color: rgb(204, 208, 211);" class=" p-5">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Find Your Phone" aria-label="Recipient's username"
-                    aria-describedby="button-addon2">
-                <button class="btn btn-primary fw-bold" type="button" id="button-addon2">Button</button>
+                <input id="inputSearch" type="text" class="form-control" placeholder="Find Your Phone"
+                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button onclick="searchbtn()" style="background-color:  indigo;"
+                    class="btn btn-outline-light border border-rounded fw-bold" type="button"
+                    id="button-addon2">Search</button>
             </div>
+
         </div>
+        <!-- <div id="phone-details"></div> -->
+        <div class="container align-middle">
+            <div id="display-Phone" class="row mt-5"></div>
+        </div>
+
     </div>
 
     <!-- JavaScript link -->
