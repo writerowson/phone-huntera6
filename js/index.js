@@ -24,7 +24,7 @@ const displayPhones = (phoneList) => {
         // div.className = "mb-5"
         div.innerHTML = `
 
-        <div  class="card p-3 " style="width: 18rem ;">
+        <div  class="card p-3 " style="width: 4rem, background-color: rgb(248, 242, 252);">
             <img  src="${phone.image}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h2 style="color: indigo;" class="card-title">${phone.phone_name}</h2>
@@ -49,17 +49,27 @@ const displayPhoneDetails = details => {
     const phoneDetails = document.getElementById("phone-details")
     const div = document.createElement('div')
     div.classList.add('card')
-    // phoneDetails.textContent = ''
+    phoneDetails.textContent = ''
     div.innerHTML = `
-    <div class=" card p-3  ">
-                <img src="${details.image}" style="width: 12rem" class="card-img-top justify-content-center " alt="...">
-   
+    <div style="background-color: rgb(248, 242, 252) ;" class=" card p-3 align-items-center ">
+                <img src="${details.image}" style="width: 12rem" class="card-img-top justify-content-center mb-3 " alt="...">
                 <h2 style=" color: indigo;" class="card-title">${details.name}</h2>
-                <h6 class="card-title">MainFeatures:</h6>
-                <p>ChipSet: ${details.mainFeatures.chipSet}</p>
+
+                <h5 class="card-title">ReleaseDate : ${details.releaseDate}</h5>
+                <h5 class="card-title">MainFeatures:</h5>
+                <p>ChipSet:  ${details.mainFeatures.chipSet}</p>
                 <p>DisplaySize: ${details.mainFeatures.displaySize}</p>
                 <p>Memory: ${details.mainFeatures.memory}</p>
-                <h6 class="card-title">Sensors:</h6>
+                <h5 class="card-title">Sensors:</h5>
+                <p>Sensors: ${details.mainFeatures.sensors}</p>
+                <h5 class="card-title">Other:</h5>
+                <p>NFC: ${details.others.NFC}</p>
+                <p>Radio: ${details.others.Radio}</p>
+                <p>Bluetooth: ${details.others.Bluetooth}</p>
+                <p>USB: ${details.others.USB}</p>
+                <p>GPS: ${details.others.GPS}</p>
+                <p>WLAN: ${details.others.WLAN}</p>
+                
                 
     </div>
    
