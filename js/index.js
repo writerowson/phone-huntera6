@@ -2,15 +2,11 @@ const searchbtn = () => {
     const inputSearching = document.getElementById("inputSearch")
     const inputText = inputSearching.value
     inputSearching.value = ''
-    const error = document.getElementById('error-message')
-    if (inputText == "") {
-        return alert('please put a item name')
-    }
-    // else if (inputText == "") {
-    //     // error.innerText = 'Sorry, No result'
-    //     return alert('Sorry, No result')
 
-    // }
+    if (inputText == "") {
+        return alert('please put a item name');
+
+    }
     else {
         const url = `https://openapi.programming-hero.com/api/phones?search=${inputText}`
         fetch(url)
@@ -21,12 +17,17 @@ const searchbtn = () => {
 
 const displayPhones = (phoneList) => {
     const phones = document.getElementById("display-Phone");
-    const first20Data = phoneList.slice(0, 20)
     // clear data
     phones.textContent = '';
+    const first20Data = phoneList.slice(0, 20)
+
+    if (first20Data <= 0) {
+        return alert('Sorry, no result')
+    }
     first20Data.forEach(phone => {
         console.log(phone)
         const div = document.createElement('div');
+
         div.classList.add('col-lg-4')
         div.classList.add('mb-5')
         // div.className = "mb-5"
@@ -39,8 +40,12 @@ const displayPhones = (phoneList) => {
                 <h5 class="card-title"> Brand : ${phone.brand}</h5>
                 
                 <a href="#" onclick="pressPhoneDetails('${phone.slug}')" style="background-color: indigo;" class="btn btn-outline-light border border-rounded fw-bold">Details</a>
+             
             </div>
+           
         </div>
+        
+       
         `;
         phones.appendChild(div)
         // console.log(phone.phoneDetails)
@@ -76,13 +81,29 @@ const displayPhoneDetails = details => {
                 <p><b> Bluetooth:</b> ${details.others.Bluetooth}</p>
                 <p><b> USB:</b> ${details.others.USB}</p>
                 <p><b> GPS:</b> ${details.others.GPS}</p>
-                <p><b> WLAN:</b> ${details.others.WLAN}</p>
-                
-                
+                <p><b> WLAN:</b> ${details.others.WLAN}</p>      
     </div>
-   
     `
     phoneDetails.appendChild(div)
-
 }
 
+// const fullPhonelist = () => {
+//     const allphones = document.getElementById("full-phonelist");
+//     const showMore = allphones.innerText;
+//     console.log(showMore)
+//     const url = `https://openapi.programming-hero.com/api/phones?search=iphone`
+//     fetch(url)
+//         .then(res => res.json())
+//         .then(data => displayAllPhones(data.data))
+//     console.log(url)
+// }
+
+// const displayAllPhones = allPhoneList => {
+//     const allPhones = document.createElement("div");
+//     console.log(allPhones)
+//     // clear data
+//     allPhones.textContent = '';
+//     div.classList.add('col-lg-4')
+//     div.classList.add('mb-5')
+
+// }
