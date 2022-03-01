@@ -1,21 +1,32 @@
+document.getElementById('error-message').style.display = 'none'
+
 const searchbtn = () => {
     const inputSearching = document.getElementById("inputSearch")
     const inputText = inputSearching.value
     // inputSearching.value = ''
-    const url = `https://openapi.programming-hero.com/api/phones?search=${inputText}`
-    fetch(url)
-        .then(res => res.json())
-        .then(data => displayPhones(data.data))
-
+    document.getElementById('error-message').style.display = 'none'
+    if (inputText == '') {
+        return alert('please put a item name')
+    }
+    else {
+        const url = `https://openapi.programming-hero.com/api/phones?search=${inputText}`
+        fetch(url)
+            .then(res => res.json())
+            .then(data => displayPhones(data.data))
+            .catch(error => displayerror(error))
+    }
 }
 
-searchbtn()
+const displayerror = error => {
+    document.getElementById('error-message').style.display = 'block'
+}
+
 
 const displayPhones = (phoneList) => {
     const phones = document.getElementById("display-Phone");
     const first20Data = phoneList.slice(0, 20)
     // clear data
-    phones.textContent = ''
+    phones.textContent = '';
     first20Data.forEach(phone => {
         console.log(phone)
         const div = document.createElement('div');
@@ -49,7 +60,8 @@ const displayPhoneDetails = details => {
     const phoneDetails = document.getElementById("phone-details")
     const div = document.createElement('div')
     div.classList.add('card')
-    phoneDetails.textContent = ''
+    // phoneDetails.textContent = '';
+    phoneDetails.innerHTML = ""
     div.innerHTML = `
     <div style="background-color: rgb(248, 242, 252) ;" class=" card p-3 align-items-center ">
                 <img src="${details.image}" style="width: 12rem" class="card-img-top justify-content-center mb-3 " alt="...">
