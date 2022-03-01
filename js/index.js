@@ -1,26 +1,23 @@
-document.getElementById('error-message').style.display = 'none'
-
 const searchbtn = () => {
     const inputSearching = document.getElementById("inputSearch")
     const inputText = inputSearching.value
-    // inputSearching.value = ''
-    document.getElementById('error-message').style.display = 'none'
-    if (inputText == '') {
+    inputSearching.value = ''
+    const error = document.getElementById('error-message')
+    if (inputText == "") {
         return alert('please put a item name')
     }
+    // else if (inputText == "") {
+    //     // error.innerText = 'Sorry, No result'
+    //     return alert('Sorry, No result')
+
+    // }
     else {
         const url = `https://openapi.programming-hero.com/api/phones?search=${inputText}`
         fetch(url)
             .then(res => res.json())
             .then(data => displayPhones(data.data))
-            .catch(error => displayerror(error))
     }
 }
-
-const displayerror = error => {
-    document.getElementById('error-message').style.display = 'block'
-}
-
 
 const displayPhones = (phoneList) => {
     const phones = document.getElementById("display-Phone");
@@ -54,38 +51,38 @@ const pressPhoneDetails = Id => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayPhoneDetails(data.data))
-    console.log(url)
+
 }
 const displayPhoneDetails = details => {
     const phoneDetails = document.getElementById("phone-details")
     const div = document.createElement('div')
     div.classList.add('card')
-    // phoneDetails.textContent = '';
-    phoneDetails.innerHTML = ""
+    phoneDetails.textContent = ''
     div.innerHTML = `
     <div style="background-color: rgb(248, 242, 252) ;" class=" card p-3 align-items-center ">
                 <img src="${details.image}" style="width: 12rem" class="card-img-top justify-content-center mb-3 " alt="...">
                 <h2 style=" color: indigo;" class="card-title">${details.name}</h2>
 
-                <h5 class="card-title">ReleaseDate : ${details.releaseDate}</h5>
+                <h5 class="card-title">ReleaseDate : ${details.releaseDate ? details.releaseDate : 'No Release Date Found'} </h5>
                 <h5 class="card-title">MainFeatures:</h5>
-                <p>ChipSet:  ${details.mainFeatures.chipSet}</p>
-                <p>DisplaySize: ${details.mainFeatures.displaySize}</p>
-                <p>Memory: ${details.mainFeatures.memory}</p>
+                <p><b>ChipSet:</b> ${details.mainFeatures.chipSet} </p>
+                <p><b>DisplaySize:</b> ${details.mainFeatures.displaySize}</p>
+                <p><b>Memory:</b> ${details.mainFeatures.memory}</p>
                 <h5 class="card-title">Sensors:</h5>
-                <p>Sensors: ${details.mainFeatures.sensors}</p>
+                <p><b>Sensors: </b>${details.mainFeatures.sensors}</p>
                 <h5 class="card-title">Other:</h5>
-                <p>NFC: ${details.others.NFC}</p>
-                <p>Radio: ${details.others.Radio}</p>
-                <p>Bluetooth: ${details.others.Bluetooth}</p>
-                <p>USB: ${details.others.USB}</p>
-                <p>GPS: ${details.others.GPS}</p>
-                <p>WLAN: ${details.others.WLAN}</p>
+                <p><b> NFC:</b> ${details.others.NFC}</p>
+                <p><b> Radio:</b> ${details.others.Radio}</p>
+                <p><b> Bluetooth:</b> ${details.others.Bluetooth}</p>
+                <p><b> USB:</b> ${details.others.USB}</p>
+                <p><b> GPS:</b> ${details.others.GPS}</p>
+                <p><b> WLAN:</b> ${details.others.WLAN}</p>
                 
                 
     </div>
    
     `
     phoneDetails.appendChild(div)
+
 }
 
