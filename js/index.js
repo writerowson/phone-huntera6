@@ -18,7 +18,7 @@ const searchbtn = () => {
 const displayPhones = (phoneList) => {
     const phones = document.getElementById("display-Phone");
     // clear data
-    phones.textContent = '';
+    phones.innerText.textContent = '';
     const first20Data = phoneList.slice(0, 20)
     if (first20Data <= 0) {
         return alert('Sorry, no result')
@@ -27,6 +27,7 @@ const displayPhones = (phoneList) => {
     first20Data.forEach(phone => {
         console.log(phone)
         const div = document.createElement('div');
+        div.textContent = ""
         div.classList.add('col-lg-4')
         div.classList.add('mb-5')
         // div.className = "mb-5"
@@ -60,8 +61,10 @@ const pressPhoneDetails = Id => {
 const displayPhoneDetails = details => {
     const phoneDetails = document.getElementById("phone-details")
     const div = document.createElement('div')
+    // clear Data
+    phoneDetails.textContent = ' ';
     div.classList.add('card')
-    phoneDetails.textContent = ''
+    div.textContent = ''
     div.innerHTML = `
     <div style="background-color: rgb(248, 242, 252) ;" class=" card p-3 align-items-center ">
                 <img src="${details.image}" style="width: 12rem" class="card-img-top justify-content-center mb-3 " alt="...">
@@ -90,7 +93,7 @@ const displayPhoneDetails = details => {
 const fullPhonelist = () => {
     const allphones = document.getElementById("full-phonelist");
     const showMore = allphones.innerText;
-    console.log(showMore)
+    allphones.textContent = ''
     const url = `https://openapi.programming-hero.com/api/phones?search=iphone`
     fetch(url)
         .then(res => res.json())
@@ -101,12 +104,13 @@ const fullPhonelist = () => {
 const displayAllPhones = allPhoneList => {
     const showAllPhones = document.getElementById("display-allPhone");
     // clear data
-    showAllPhones.textContent = '';
+    // showAllPhones.innerText.textContent = '';
     allPhoneList.forEach(phones => {
         const div = document.createElement("div");
         div.classList.add('col-lg-4')
         div.classList.add('mb-5')
-
+        div.textContent = ''
+        div.innerHTML.textContent = ''
         div.innerHTML = `
         
         <div   class="card p-3 " style="width: 4rem, background-color: rgb(248, 242, 252);">
