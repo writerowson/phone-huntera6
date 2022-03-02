@@ -45,10 +45,9 @@ const displayPhones = (phoneList) => {
         </div>
         
         `;
-        document.querySelector("#full-phonelist").innerHTML = "See More>>"
+        document.querySelector("#full-phonelist").innerHTML = "Load More>>"
         phones.appendChild(div)
 
-        // console.log(phone.phoneDetails)
     });
 }
 const pressPhoneDetails = Id => {
@@ -100,12 +99,10 @@ const fullPhonelist = () => {
 }
 
 const displayAllPhones = allPhoneList => {
-
     const showAllPhones = document.getElementById("display-allPhone");
-    console.log(showAllPhones)
     // clear data
     showAllPhones.textContent = '';
-    for (let phones of allPhoneList) {
+    allPhoneList.forEach(phones => {
         const div = document.createElement("div");
         div.classList.add('col-lg-4')
         div.classList.add('mb-5')
@@ -126,6 +123,6 @@ const displayAllPhones = allPhoneList => {
         
         `;
         showAllPhones.appendChild(div)
-    }
+    })
 
 }
